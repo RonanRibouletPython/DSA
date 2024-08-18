@@ -1,5 +1,11 @@
-class DictSolution:
-    def isAnagram(self, s: str, t: str) -> bool:
+import sys
+sys.path.append('../../Leetcode')
+from utils import time_it
+
+class Solution:
+    
+    @time_it
+    def hashmapIsAnagram(self, s: str, t: str) -> bool:
         # Return False if the word don't have the same lenght
         if len(s) != len(t):
             return False
@@ -24,8 +30,13 @@ class DictSolution:
         # Compare the dictionaries
         return s_dict == t_dict
     
+    @time_it
+    def sortedIsAnagram(self, s: str, t: str) -> bool:
+        
+        return sorted(s) == sorted(t)
+    
 
-solution = DictSolution()
+solution = Solution()
 
 #Input :
 s1 = "qwerty"
@@ -36,7 +47,10 @@ t2 = "jam"
 
 if __name__ == '__main__':
 
-    print(f"{s1} and {t1} are anagrams: {solution.isAnagram(s1, t1)}")
-    print(f"{s2} and {t2} are anagrams: {solution.isAnagram(s2, t2)}")
+    print(f"{s1} and {t1} are anagrams: {solution.hashmapIsAnagram(s1, t1)}")
+    print(f"{s2} and {t2} are anagrams: {solution.hashmapIsAnagram(s2, t2)}")
+    
+    print(f"{s1} and {t1} are anagrams: {solution.sortedIsAnagram(s1, t1)}")
+    print(f"{s2} and {t2} are anagrams: {solution.sortedIsAnagram(s2, t2)}")
     
     

@@ -1,18 +1,33 @@
 from typing import List
+import sys
+sys.path.append('../../Leetcode')
+from utils import time_it
 
 class Solution:
+    @time_it
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         
-        output = []
-        add = 0
+        # Lenght of the array
+        n = len(nums)
         
-        for i in range(len(nums)):
-            add += nums[i]
+        # Result array
+        res = [1] * n
         
-        for i in range(len(nums)):
-            output.append(add - nums[i])
-
-        return output
+        prefix = 1
+        
+        # Left to Right
+        for i in range(n):
+            res[i] *= prefix
+            prefix *= nums[i]
+        
+        suffix = 1
+        
+        # Right to Left
+        for i in range(n-1, -1, -1):
+            res[i] *= suffix
+            suffix *= nums[i]
+        
+        return res    
 
 solution = Solution()
 

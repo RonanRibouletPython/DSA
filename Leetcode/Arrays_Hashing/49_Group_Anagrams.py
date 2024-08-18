@@ -1,8 +1,12 @@
 from typing import List
+import sys
+sys.path.append('../../Leetcode')
+from utils import time_it
+from collections import defaultdict
 
 class Solution:
-             
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    @time_it         
+    def dicGroupAnagrams(self, strs: List[str]) -> List[List[str]]:
         # Create an empty dictionary to store the anagrams
         anagram_dict = {}
         
@@ -21,10 +25,26 @@ class Solution:
         # Convert the dictionary values (list of anagrams) to lists and return them
         return list(anagram_dict.values())
     
+    @time_it
+    def defaultDicGroupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        res = defaultdict(list) # mapping character counter to list of anagrams
+        
+        for s in strs:
+            counter = [0] * 26 # 26 English letters
+            
+            for c in s:
+                counter[ord(c) - ord('a')] += 1
+            
+            res[tuple(counter)].append(s)
+        
+        return list(res.values())
+    
 # Test the solution
 solution = Solution()
 
 strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 
 if __name__ == "__main__":
-    print(solution.groupAnagrams(strs))  # Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+    print(solution.dicGroupAnagrams(strs))  # Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+    print(solution.defaultDicGroupAnagrams(strs))

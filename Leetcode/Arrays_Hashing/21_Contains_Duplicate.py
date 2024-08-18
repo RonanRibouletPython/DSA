@@ -1,8 +1,13 @@
 from typing import List
+import sys
+sys.path.append('../../Leetcode')
+from utils import time_it
 
-class HashsetSolution:
-    def hasDuplicate(self, nums: List[int]) -> bool:
-        # Create a hashmap
+
+class Solution:
+    @time_it
+    def setHasDuplicate(self, nums: List[int]) -> bool:
+        # Create a hashset
         seen = set()
         
         # Iterate over the list and return True if a value is already stored in the hashmap
@@ -13,8 +18,8 @@ class HashsetSolution:
                 seen.add(num)
         return False
 
-class PointersSolution:
-    def hasDuplicate(self, nums: List[int]) -> bool:
+    @time_it
+    def pointerHasDuplicate(self, nums: List[int]) -> bool:
         # Sort the list
         nums.sort()
         
@@ -33,21 +38,21 @@ list1 = [1, 2, 3, 1]
 list2 = [1, 2, 3, 4]
 list3 = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
 
-solution = HashsetSolution()
+solution = Solution()
 
-solution2 = PointersSolution()
+
 
 if __name__ == '__main__':
     
     print("Solution 1: \n")
-    print(f"Solution for {list1}: {solution.hasDuplicate(list1)}")
-    print(f"Solution for {list2}: {solution.hasDuplicate(list2)}")
-    print(f"Solution for {list3}: {solution.hasDuplicate(list3)}\n")
+    print(f"Solution for {list1}: {solution.setHasDuplicate(list1)}")
+    print(f"Solution for {list2}: {solution.setHasDuplicate(list2)}")
+    print(f"Solution for {list3}: {solution.setHasDuplicate(list3)}\n")
     
     print("Solution 2: \n")
-    print(f"Solution for {list1}: {solution2.hasDuplicate(list1)}")
-    print(f"Solution for {list2}: {solution2.hasDuplicate(list2)}")
-    print(f"Solution for {list3}: {solution2.hasDuplicate(list3)}\n")
+    print(f"Solution for {list1}: {solution.pointerHasDuplicate(list1)}")
+    print(f"Solution for {list2}: {solution.pointerHasDuplicate(list2)}")
+    print(f"Solution for {list3}: {solution.pointerHasDuplicate(list3)}\n")
     
     
 
